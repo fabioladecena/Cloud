@@ -3,90 +3,75 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<!--  Personas 
-	<bean class="f.paquete.uno.Persona" id="persona1">
-		<property name="nombre" value="Silvia"></property>
-		<property name="edad" value="19"></property>
-		<property name="telefono" value="659887456"></property>
-		<property name="direccion" ref="direccion1"></property>
+	<bean id="SALA" class="modelo.entidad.Habitacion">
+		<property name="tipoHabitacion" value="SALA"></property>
+		<property name="metros" value="40"></property>
 	</bean>
-	<bean class="f.paquete.uno.Persona" id="persona2">
-		<property name="nombre" value="Vanessa"></property>
-		<property name="edad" value="26"></property>
-		<property name="telefono" value="659777456"></property>
-		<property name="direccion" ref="direccion2"></property>
+
+	<bean id="COCINA" class="modelo.entidad.Habitacion">
+		<property name="tipoHabitacion" value="COCINA"></property>
+		<property name="metros" value="20"></property>
 	</bean>
-	<bean class="f.paquete.uno.Persona" id="persona3">
-		<property name="nombre" value="Alex"></property>
-		<property name="edad" value="24"></property>
-		<property name="telefono" value="659887456"></property>
-		<property name="direccion" ref="direccion2"></property>
+
+	<bean id="BANO" class="modelo.entidad.Habitacion">
+		<property name="tipoHabitacion" value="BANO"></property>
+		<property name="metros" value="15"></property>
 	</bean>
-	<bean id="arrayInq" class="java.util.ArrayList">
+
+	<bean id="CUARTO" class="modelo.entidad.Habitacion">
+		<property name="tipoHabitacion" value="DORMITORIO"></property>
+		<property name="metros" value="25"></property>
+	</bean>
+
+	<bean id="CASA" class="modelo.entidad.Casa">
+		<property name="direccion">
+			<bean class="modelo.entidad.Direccion">
+				<property name="tipoVia" value="Calle"></property>
+				<property name="nombreVia" value="Las Rosas"></property>
+				<property name="cp" value="28042"></property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="habitaciones" class="java.util.ArrayList">
 		<constructor-arg>
 			<list>
-				<ref bean="persona2"></ref>
-				<ref bean="persona3"></ref>
+				<ref bean="SALA" />
+				<ref bean="COCINA" />
+				<ref bean="CUARTO" />
+				<ref bean="BANO" />
+			</list>
+		</constructor-arg>
 
+	</bean>
+	<bean class="modelo.entidad.Persona" id="dueño">
+		<property name="nombre" value="Pedro"></property>
+		<property name="tlf" value="666777888"></property>
+		<property name="direccion" ref="direccion"></property>
+	</bean>
+	<bean class="modelo.entidad.Persona" id="inquilino">
+		<property name="nombre" value="Lola"></property>
+		<property name="tlf" value="888777666"></property>
+		<property name="direccion" ref="direccion"></property>
+	</bean>
+	<bean class="modelo.entidad.Persona" id="inquilino2">
+		<property name="nombre" value="Mario"></property>
+		<property name="tlf" value="999555444"></property>
+		<property name="direccion" ref="direccion"></property>
+	</bean>
+	<bean id="inquilinos" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<ref bean="inquilino"></ref>
+				<ref bean="inquilino2"></ref>
 			</list>
 		</constructor-arg>
 	</bean>
-
-	< Direcciones 
-
-	<bean class="f.paquete.uno.Direccion" id="direccion1">
-		<property name="tipoVia" value="Calle"></property>
-		<property name="nombrevia" value="De la Vida"></property>
-		<property name="cp" value="29866"></property>
-	</bean>
-	<bean class="f.paquete.uno.Direccion" id="direccion2">
-		<property name="tipoVia" value="Avenida"></property>
-		<property name="nombrevia" value="Pollil"></property>
-		<property name="cp" value="29886"></property>
+	<bean class="modelo.entidad.Casa" id="casa">
+		<property name="metros" value="100"></property>
+		<property name="habitaciones" ref="habitaciones"></property>
+		<property name="dueño" ref="dueño"></property>
+		<property name="inquilinos" ref="inquilinos"></property>
 	</bean>
 
-
-	< Habitaciones 
-
-	<bean class="f.paquete.uno.Habitacion" id="hab1">
-		<property name="tipoHab" value="Cocina"></property>
-		<property name="cantidad" value="1"></property>
-		<property name="metros2" value="50"></property>
-	</bean>
-	<bean class="f.paquete.uno.Habitacion" id="hab2">
-		<property name="tipoHab" value="Salon"></property>
-		<property name="cantidad" value="1"></property>
-		<property name="metros2" value="80"></property>
-	</bean>
-
-	<bean class="f.paquete.uno.Habitacion" id="hab3">
-		<property name="tipoHab" value="Baño"></property>
-		<property name="cantidad" value="1"></property>
-		<property name="metros2" value="50"></property>
-	</bean>
-	<bean class="f.paquete.uno.Habitacion" id="hab4">
-		<property name="tipoHab" value="Dormitorio"></property>
-		<property name="cantidad" value="5"></property>
-		<property name="metros2" value="40"></property>
-	</bean>
-	<bean id="arrayHabs" class="java.util.ArrayList">
-		<constructor-arg>
-			<list>
-				<ref bean="hab1"></ref>
-				<ref bean="hab2"></ref>
-				<ref bean="hab3"></ref>
-				<ref bean="hab4"></ref>
-			</list>
-		</constructor-arg>
-	</bean>
-	
-	< Casa -->
-	
-	<bean class="f.paquete.uno.Casa" id="casa1">
-		<property name="superficie" value="500"></property>
-		<property name="habitaciones" ref="arrayHabs"></property>
-		<property name="dueño" ref="persona1"></property>
-		<property name="inquilinos" ref="arrayInq"></property>
-	</bean>  
 
 </beans>
